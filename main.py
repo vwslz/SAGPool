@@ -38,7 +38,7 @@ parser.add_argument('--pooling_layer_type', type=str, default='GCNConv',
 # Logging on wandb
 parser.add_argument('--name', type=str, default=None,
         help="Run name")
-parser.add_argument('--wandb', type=str, default='trigger-bilevel', 
+parser.add_argument('--wandb', type=str, default='sagpool', 
         help="wandb project name")
 parser.add_argument('--use_wandb', action='store_true',
                     help="use wandb project name")
