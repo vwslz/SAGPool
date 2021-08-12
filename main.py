@@ -123,8 +123,8 @@ for epoch in range(args.epochs):
         wandb.log({"Train Acc": train_acc})
         wandb.log({"Valid Loss": val_loss})
         wandb.log({"Valid Acc": val_acc})
-        print(f"Trsin loss:{val_loss}\taccuracy:{val_acc}")
-        print(f"Validation loss:{val_loss}\taccuracy:{val_acc}")
+    print(f"Trsin loss:{val_loss}\taccuracy:{val_acc}")
+    print(f"Validation loss:{val_loss}\taccuracy:{val_acc}")
 
     if val_loss < min_loss:
         torch.save(model.state_dict(),'latest.pth')
@@ -142,6 +142,7 @@ model.load_state_dict(torch.load('latest.pth'))
     
 test_acc,test_loss = test(model,test_loader)
 
-wandb.log({"Test Loss": test_loss})
-wandb.log({"Test Acc": test_acc})
+if args.use_wandb:
+    wandb.log({"Test Loss": test_loss})
+    wandb.log({"Test Acc": test_acc})
 print(f"Test accuarcy:{test_acc}")
