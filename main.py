@@ -57,12 +57,12 @@ dataset = TUDataset(os.path.join('data',args.dataset),name=args.dataset)
 args.num_classes = dataset.num_classes
 args.num_features = dataset.num_features
 
-if not parser.name:
-    parser.name = f"SAGPool"
-if parser.use_wandb:
+if not args.name:
+    args.name = f"SAGPool"
+if args.use_wandb:
     wandb.init(
-        project=f'{parser.wandb}', 
-        name=f'{parser.name}',
+        project=f'{args.wandb}', 
+        name=f'{args.name}',
         # tags=["Sunrise", "Physics Trigger"],
         tags=["Sunrise", "SAGPool"]
         # config=config,
