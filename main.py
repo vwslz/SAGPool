@@ -118,12 +118,13 @@ for epoch in range(args.epochs):
     train_acc,train_loss = test(model,train_loader)
     val_acc,val_loss = test(model,val_loader)
     
-    wandb.log({"Train Loss": train_loss})
-    wandb.log({"Train Acc": train_acc})
-    wandb.log({"Valid Loss": val_loss})
-    wandb.log({"Valid Acc": val_acc})
-    print(f"Trsin loss:{val_loss}\taccuracy:{val_acc}")
-    print(f"Validation loss:{val_loss}\taccuracy:{val_acc}")
+    if args.use_wandb:
+        wandb.log({"Train Loss": train_loss})
+        wandb.log({"Train Acc": train_acc})
+        wandb.log({"Valid Loss": val_loss})
+        wandb.log({"Valid Acc": val_acc})
+        print(f"Trsin loss:{val_loss}\taccuracy:{val_acc}")
+        print(f"Validation loss:{val_loss}\taccuracy:{val_acc}")
 
     if val_loss < min_loss:
         torch.save(model.state_dict(),'latest.pth')
